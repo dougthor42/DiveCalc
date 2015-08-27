@@ -38,7 +38,9 @@ class TestTableDepth(unittest.TestCase):
     def test_known_values(self):
         """Check known good values"""
         for depth, expected in self.known_values:
-            self.assertEqual(main.table_depth(depth), expected)
+            result = main.table_depth(depth)
+            fail_msg = "Got {}, expected {}".format(result, expected)
+            self.assertEqual(result, expected, msg=fail_msg)
 
     def test_negative_depth(self):
         """Negative values raise ValueError"""
@@ -62,6 +64,36 @@ class TestTableDepth(unittest.TestCase):
             fail_msg = "Failed on: `{} {}`".format(item, type(item))
             with self.assertRaises(TypeError, msg=fail_msg):
                 main.table_depth(item)
+
+
+class TestTableDepthIndex(unittest.TestCase):
+    known_values = ((0, 0),
+                    (25, 3),
+                    (47.6, 7),
+                    (123, 15),
+                    )
+
+    def test_known_values(self):
+        """Check known good values"""
+        for depth, expected in self.known_values:
+            result = main.table_depth_index(depth)
+            fail_msg = "Got {}, expected {}".format(result, expected)
+            self.assertEqual(result, expected, msg=fail_msg)
+
+
+class TestGroupGivenDepthAndTime(unittest.TestCase):
+    # (depth, time, group)
+    known_values = ((63, 27, "F"),
+                    (21.3, 183, "H"),
+                    (45, 29, "E"),
+                    )
+
+    def test_known_values(self):
+        """Check known good values"""
+        for depth, time, expected in self.known_values:
+            result = main.find_group_given_depth_time(depth, time)
+            fail_msg = "Got {}, expected {}".format(result, expected)
+            self.assertEqual(result, expected, msg=fail_msg)
 
 
 if __name__ == "__main__":

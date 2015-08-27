@@ -1,0 +1,10 @@
+nose
+wheel
+nose-cov
+python-termstyle
+colorama
+green
+docopt
+coverage
+coveralls
+cx_freeze

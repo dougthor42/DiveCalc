@@ -17,7 +17,7 @@ import numpy as np
 
 # Package / Application
 try:
-    # Imports used for unittests
+    # Imports used by unit test runners
 #    from . import pbsql
 #    from . import plots
 #    from . import utils

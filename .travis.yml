@@ -5,6 +5,9 @@ sudo: false
 python:
   - "3.4"
 
+env:
+  - WXPYTHON_SNAPSHOTS=https://wxpython.org/Phoenix/snapshot-builds/linux/gtk3/ubuntu-14.04/
+
 notifications:
   email: false
 
@@ -18,7 +21,7 @@ install:
 
   # Start the install of everything
   - pip install --upgrade pip
-  - pip install http://dougthor42.github.io/tools/wxPython-3.0.3-cp34-cp34m-linux_x86_64.whl
+  - "pip install --only-binary :all: --pre -f $WXPYTHON_SNAPSHOTS wxPython"
   - pip install -r dev-requirements.txt
   - pip install numpy
 
